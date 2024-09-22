@@ -1,0 +1,42 @@
+<%- include ('partials/header.ejs')%> <%- include ('partials/navbar.ejs')%>
+
+    <main id="page">
+      <div class="container-fluid">
+
+        <br><br>
+        <h1 style="color: #1a3a2c;">Produtos</h1>
+        <div class="divisao"></div>
+        <br><br>
+
+        <!-- tabela -->
+        <div class="table-a mx-auto">
+          <table class="table mt-4">
+            <thead>
+              <tr>
+                <th scope="col">Produto:</th>
+                <th scope="col">Preço:</th>
+                <th scope="col">Categoria:</th>
+              </tr>
+            </thead>
+
+            <% produtos.forEach((produtos)=>{%>
+              <tbody>
+                <td>
+                  <%= produtos.produto %>
+                </td>
+                <td>
+                  <%= produtos.preco.toLocaleString("pt-br",{ style: "currency" , currency:"BRL"}) %>
+                </td>
+                <td>
+                  <%= produtos.categoria %>
+                </td>
+                </tr>
+              </tbody>
+
+              <%})%>
+          </table>
+        </div>
+      </div>
+    </main>
+
+    <%- include ('partials/footer.ejs')%>

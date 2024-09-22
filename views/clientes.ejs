@@ -1,0 +1,42 @@
+<%- include ('partials/header.ejs')%> <%- include ('partials/navbar.ejs')%>
+
+    <main id="page">
+      <div class="container-fluid">
+
+        <br><br>
+        <h1 style="color: #1a3a2c;">Clientes</h1>
+        <div class="divisao"></div>
+        <br><br>
+
+        <!-- tabela -->
+        <div class="table-a mx-auto">
+          <table class="table mt-4">
+            <thead>
+              <tr>
+                <th scope="col">Nome:</th>
+                <th scope="col">CPF:</th>
+                <th scope="col">Endereço:</th>
+              </tr>
+            </thead>
+
+            <% cliente.forEach((cliente)=>{%>
+              <tbody>
+                <tr>
+                  <td>
+                    <%= cliente.nome %>
+                  </td>
+                  <td>
+                    <%= cliente.cpf %>
+                  </td>
+                  <td>
+                    <%= cliente.endereco %>
+                  </td>
+                </tr>
+              </tbody>
+              <%})%>
+          </table>
+        </div>
+      </div>
+    </main>
+
+    <%- include ('partials/footer.ejs')%>
