@@ -1,5 +1,28 @@
-const express = require("express");
+import express from "express";
 const app = express();
+
+// IMPORTAÇÃO SEQUELIZE
+import connection from "./config/sequelize_config.js";
+
+// CONEXÃO COM BANCO DE DADOS
+connection
+  .authenticate()
+  .then(() => {
+    console.log("Conexão com o banco de dados feita com sucesso!");
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+
+// CRIAÇÃO DO BANCO
+connection
+  .query("CREATE DATABASE IF NOT EXISTS 4woods;")
+  .then(() => {
+    console.log("O banco de dados foi criado com sucesso");
+  })
+  .catch((error) => {
+    console.log(error);
+  });
 
 // Rota principal
 app.get("/", (req, res) => {
@@ -10,6 +33,7 @@ app.get("/", (req, res) => {
 app.set("view engine", "ejs");
 // Define arquivos estáticos
 app.use(express.static("public"));
+app.use(express.urlencoded({extended:false}))
 
 // Rota clientes
 app.get("/clientes", (req, res) => {
@@ -74,18 +98,8 @@ app.get("/clientes", (req, res) => {
 });
 
 // Rota produtos
-app.get("/produtos", (req, res) => {
-  const produtos = [
-    { produto: "Barraca 4 lugares", preco: 570, categoria: "Barracas" },
-    { produto: "Barraca 2 lugares", preco: 240, categoria: "Barracas" },
-    { produto: "Barraca 8 lugares", preco: 1020, categoria: "Barracas" },
-    { produto: "Mesa dobrável", preco: 130, categoria: "Acessórios" },
-    { produto: "Cadeira dobrável", preco: 70, categoria: "Acessórios" },
-    { produto: "Garrafa térmica classic", preco: 220, categoria: "Acessórios" },
-    { produto: "Kit fogareiro", preco: 380, categoria: "Acessórios" },
-  ];
-  res.render("produtos", { produtos: produtos });
-});
+import produtosController from './controllers/produtosCrontroller.js'
+app.use("/", produtosController);
 
 // Rota pedidos
 app.get("/pedidos", (req, res) => {
@@ -102,9 +116,6 @@ app.get("/pedidos", (req, res) => {
     { nmrpedido: "10", valor: 840 },
     { nmrpedido: "11", valor: 290 },
     { nmrpedido: "12", valor: 210 },
-    { nmrpedido: "13", valor: 340 },
-    { nmrpedido: "14", valor: 670 },
-    { nmrpedido: "15", valor: 380 },
   ];
   res.render("pedidos", { pedidos: pedidos });
 });

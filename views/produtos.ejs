@@ -1,41 +1,59 @@
 <%- include ('partials/header.ejs')%> <%- include ('partials/navbar.ejs')%>
 
     <main id="page">
-      <div class="container-fluid">
-
-        <br><br>
-        <h1 style="color: #1a3a2c;">Produtos</h1>
-        <div class="divisao"></div>
-        <br><br>
-
-        <!-- tabela -->
-        <div class="table-a mx-auto">
-          <table class="table mt-4">
-            <thead>
-              <tr>
-                <th scope="col">Produto:</th>
-                <th scope="col">Preço:</th>
-                <th scope="col">Categoria:</th>
-              </tr>
-            </thead>
-
-            <% produtos.forEach((produtos)=>{%>
-              <tbody>
-                <td>
-                  <%= produtos.produto %>
-                </td>
-                <td>
-                  <%= produtos.preco.toLocaleString("pt-br",{ style: "currency" , currency:"BRL"}) %>
-                </td>
-                <td>
-                  <%= produtos.categoria %>
-                </td>
-                </tr>
-              </tbody>
-
-              <%})%>
-          </table>
-        </div>
+    <div class="container">
+      <div class="card">
+          <div class="card-header green">
+              <h1>Cadastrar produtos</h1>
+          </div>
+   
+      <div class="card-body">
+          <form action="/produtos/new" method="post">
+              <label style="color: black;">Nome do Produto:</label>
+              <input type="text" name="produto" id="produto" class="form-control" required>
+   
+              <label style="color: black;">Valor:</label>
+              <input type="text" name="preco" id="preco" class="form-control" required>
+   
+              <label style="color: black;">Categoria:</label>
+              <input type="text" name="categoria" id="categoria" class="form-control" required>
+              <br>
+              <input type="submit" class="btn btn-success" value="Cadastrar">
+          </form>
+      </div>
+   </div>
+  </div>  
+  
+  <div class="container">
+          <div class="card">
+              <div class="card-header green" >
+                  <h1>Produtos</h1>
+              </div>
+              <div class="card-body">
+                  <table>
+                      <thead>
+                          <tr>
+                              <th style="width: 50px;"></th>
+                              <th style="width: 150px;">Nome:</th>
+                              <th style="width: 130px;">Preço:</th>
+                              <th style="width: 130px;">Categoria:</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <% produtos.forEach(produto => { %>
+                          <tr>
+                              <td><img src="imgs/product.png" width="30px"></td>
+                              <td><%= produto.produto %></td>
+                              <td><%= produto.preco.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'}) %></td>
+                              <td><%= produto.categoria %></td>
+                              <td> <a style="color: orange;" href="/produtos/edit/<%= produto.id %>"> Editar </a></td>
+                              <td> <a style="color: red;" href="/produtos/delete/<%= produto.id %>"> Deletar </a></td>
+                          </tr>
+                          <% }) %>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
       </div>
     </main>
 

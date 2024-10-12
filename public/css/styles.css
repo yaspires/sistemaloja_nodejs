@@ -2,6 +2,17 @@
     color: #fefefe;
 }
 
+td{
+    color: black;
+}
+
+th{ color: black;}
+
+.green{
+    background-color: #1a3a2c;
+    color: #fefefe;
+}
+
 /* header */
 .content{
     margin-left: 44vw;
@@ -29,7 +40,7 @@
     background-repeat: no-repeat;
 }
 
-.card{
+.principal{
     border-style: hidden;
     width: 24vw;
     height: 35vh;

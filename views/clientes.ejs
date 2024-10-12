@@ -1,42 +1,43 @@
 <%- include ('partials/header.ejs')%> <%- include ('partials/navbar.ejs')%>
 
     <main id="page">
-      <div class="container-fluid">
+      <br>
+      <div class="container">
+        <div class="card">
+          <div class="card-header green">
+            <h1>Clientes</h1>
+          </div>
 
-        <br><br>
-        <h1 style="color: #1a3a2c;">Clientes</h1>
-        <div class="divisao"></div>
-        <br><br>
-
-        <!-- tabela -->
-        <div class="table-a mx-auto">
-          <table class="table mt-4">
-            <thead>
-              <tr>
-                <th scope="col">Nome:</th>
-                <th scope="col">CPF:</th>
-                <th scope="col">Endereço:</th>
-              </tr>
-            </thead>
-
-            <% cliente.forEach((cliente)=>{%>
-              <tbody>
+          <div class="card-body">
+            <table>
+              <thead>
                 <tr>
-                  <td>
-                    <%= cliente.nome %>
-                  </td>
-                  <td>
-                    <%= cliente.cpf %>
-                  </td>
-                  <td>
-                    <%= cliente.endereco %>
-                  </td>
+                  <th style="width: 50px;"></th>
+                  <th style="width: 200px;">Nome:</th>
+                  <th style="width: 150px;">CPF:</th>
+                  <th style="width: 300px;">Endereço:</th>
                 </tr>
-              </tbody>
-              <%})%>
-          </table>
+              </thead>
+
+              <% cliente.forEach((cliente)=>{%>
+                <tbody>
+                  <tr>
+                    <td><img src="imgs/cliente.png" width="25px"></td>
+                    <td style=" height: 30px;">
+                      <%= cliente.nome %>
+                    </td>
+                    <td>
+                      <%= cliente.cpf %>
+                    </td>
+                    <td>
+                      <%= cliente.endereco %>
+                    </td>
+                  </tr>
+                </tbody>
+                <%})%>
+            </table>
+          </div>
         </div>
-      </div>
     </main>
 
     <%- include ('partials/footer.ejs')%>
