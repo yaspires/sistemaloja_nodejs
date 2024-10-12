@@ -102,23 +102,8 @@ import produtosController from './controllers/produtosCrontroller.js'
 app.use("/", produtosController);
 
 // Rota pedidos
-app.get("/pedidos", (req, res) => {
-  const pedidos = [
-    { nmrpedido: "01", valor: 1420 },
-    { nmrpedido: "02", valor: 730 },
-    { nmrpedido: "03", valor: 210 },
-    { nmrpedido: "04", valor: 340 },
-    { nmrpedido: "05", valor: 670 },
-    { nmrpedido: "06", valor: 380 },
-    { nmrpedido: "07", valor: 360 },
-    { nmrpedido: "08", valor: 70 },
-    { nmrpedido: "09", valor: 1400 },
-    { nmrpedido: "10", valor: 840 },
-    { nmrpedido: "11", valor: 290 },
-    { nmrpedido: "12", valor: 210 },
-  ];
-  res.render("pedidos", { pedidos: pedidos });
-});
+import pedidosController from './controllers/pedidosController.js'
+app.use("/", pedidosController)
 
 // Iniciar servidor
 const port = 4000;

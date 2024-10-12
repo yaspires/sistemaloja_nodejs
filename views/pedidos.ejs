@@ -4,33 +4,55 @@
       <div class="container">
       <div class="card">
         <div class="card-header green">
-        <h1>Pedidos</h1>
+          <h1>Cadastrar pedidos</h1>
         </div>
 
         <div class="card-body">
-          <table>
-            <thead>
-              <tr>
-                <th style="width: 170px;">Número do pedido:</th>
-                <th style="width: 150px;">Valor:</th>
-              </tr>
-            </thead>
-
-            <% pedidos.forEach((pedidos)=>{%>
-              <tbody>
-                <tr>
-                  <td style="height: 30px;">
-                    <%= pedidos.nmrpedido %>
-                  </td>
-                  <td>
-                    <%= pedidos.valor.toLocaleString("pt-br",{ style: "currency" , currency:"BRL"}) %>
-                  </td>
-                </tr>
-              </tbody>
-              <%})%>
-          </table>
+          <form action="/pedidos/new" method="post">
+            <label style="color: black;">Numero do pedido:</label>
+            <input type="text" name="numero" id="numero" class="form-control" required>
+            <label style="color: black;">Valor:</label>
+            <input type="text" name="valor" id="valor" class="form-control" required>
+            <br>
+            <input type="submit" class="btn" value="Cadastrar">
+          </form>
         </div>
       </div>
+    </div>
+      </div>
+
+      <div class="container">
+        <div class="card">
+          <div class="card-header green">
+            <h1>Pedidos</h1>
+          </div>
+
+          <div class="card-body">
+            <table>
+              <thead>
+                <tr>
+                  <th style="width: 170px;">Número do pedido:</th>
+                  <th style="width: 150px;">Valor:</th>
+                </tr>
+              </thead>
+
+              <% pedidos.forEach((pedidos)=>{%>
+                <tbody>
+                  <tr>
+                    <td style="height: 30px;">
+                      <%= pedidos.numero %>
+                    </td>
+                    <td>
+                      <%= pedidos.valor.toLocaleString("pt-br",{ style: "currency" , currency:"BRL"}) %>
+                    </td>
+                    <td> <a style="color: orange;" href="/pedidos/edit/<%= pedidos.id %>"> Editar </a></td>
+                    <td> <a style="color: red;" href="/pedidos/delete/<%= pedidos.id %>"> Deletar </a></td>
+                  </tr>
+                </tbody>
+                <%})%>
+            </table>
+          </div>
+        </div>
     </main>
 
     <%- include ('partials/footer.ejs')%>
