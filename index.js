@@ -4,6 +4,26 @@ const app = express();
 // IMPORTAÇÃO SEQUELIZE
 import connection from "./config/sequelize_config.js";
 
+// importando o middleware
+import Auth from "./middleware/Auth.js"
+
+//importando o gerador de sessões do express
+import session from "express-session"
+
+// importando o express flash
+import flash from "express-flash"
+
+app.use(flash())
+
+//configurando o express-session
+app.use(session({
+  secret: "lojasecret",
+  cookie: {maxAge: 3600000}, //sessão expira em uma hora
+  saveUninitialized: false,
+  resave: false
+}))
+
+
 // CONEXÃO COM BANCO DE DADOS
 connection
   .authenticate()
@@ -25,7 +45,7 @@ connection
   });
 
 // Rota principal
-app.get("/", (req, res) => {
+app.get("/",Auth, (req, res) => {
   res.render("index");
 });
 
@@ -36,7 +56,7 @@ app.use(express.static("public"));
 app.use(express.urlencoded({extended:false}))
 
 // Rota clientes
-app.get("/clientes", (req, res) => {
+app.get("/clientes",Auth, (req, res) => {
   const cliente = [
     {
       nome: "Ana kuzendorff",
@@ -104,6 +124,9 @@ app.use("/", produtosController);
 // Rota pedidos
 import pedidosController from './controllers/pedidosController.js'
 app.use("/", pedidosController)
+
+import usersControllers from './controllers/usersController.js'
+app.use("/", usersControllers)
 
 // Iniciar servidor
 const port = 4000;
