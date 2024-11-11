@@ -6,17 +6,22 @@
   </div>
 <% } %>
 
+<main class="index" style="height: 90vh; margin-top:-50px;">
+  <br><br>
 <div class="container">
-  <div class="card">
-    <div class="card-header">
+  <div class="card" style="margin-top: 150px;">
+    <div class="card-header green">
         <h2> Cadastro de usuário </h2>
     </div>
     <div class="card-body">
         <form action="/createUser" method="post">
             <label>E-mail:</label>
+            <br><br>
             <input type="email" class="form-control" name="email" placeholder="email@exemplo.com" required><br>
             <label>Senha:</label>
+            <br><br>
             <input type="password" class="form-control" name="password" placeholder="Insira sua senha" required><br>
+            <br>
             <input type="submit" class="btn btn-success btn-block" value="Cadastrar">
         </form>
         <hr>
@@ -24,5 +29,6 @@
     </div>
   </div>
 </div>
+</main>
 
 <%- include ('partials/footer.ejs') %>

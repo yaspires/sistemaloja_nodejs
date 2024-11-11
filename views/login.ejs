@@ -5,18 +5,21 @@
       <%= messages.danger %>
   </div>
 <% } %>
-
-<div class="container col-4">
+<main class="index" style="height: 90vh; margin-top:-50px;">
+  <br><br>
+<div class="container col-4" style="margin-top: 100px;">
   <div class="card">
-    <div class="card-header">
+    <div class="card-header green">
         <h2> Login de administrador</h2>
     </div>
     <div class="card-body m-auto">
         <p style="color: red; font-size: 0.7em">Você precisa estar logado para acessar os recursos do painel.</p>
         <form action="/authenticate" method="POST">
             <label>E-mail:</label>
+            <br><br>
             <input type="email" class="form-control" name="email" placeholder="email@exemplo.com" required><br>
             <label>Senha:</label>
+            <br><br>
             <input type="password" class="form-control" name="password" placeholder="Insira sua senha" required><br>
             <input type="submit" class="btn btn-success btn-block" value="Entrar">
         </form>
@@ -25,5 +28,7 @@
     </div>
   </div>
 </div>
+<br><br>
+</main>
 
 <%- include ('partials/footer.ejs') %>
